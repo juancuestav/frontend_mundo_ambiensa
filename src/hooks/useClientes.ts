@@ -1,13 +1,16 @@
-// src/hooks/useClients.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  getClientes,
+  deleteCliente,
+  filtrar,
+} from "../services/clienteService";
 import { useEffect, useState } from "react";
-import { filtrar } from "../api/clienteApi";
-import { getClientes, deleteCliente } from "../services/clienteService";
 import Cliente from "../models/Cliente";
 
 const useClients = () => {
+  const [error, setError] = useState<string | null>(null);
   const [clientes, setClientes] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   const obtenerClientes = async () => {
     try {
@@ -29,21 +32,20 @@ const useClients = () => {
     }
   };
 
-  useEffect(() => {
-    obtenerClientes();
-  }, []);
-
-  // Función para realizar la consulta a la API
   const filtrarClientes = async (url: string) => {
     try {
-      const data: any = await filtrar(url);
-      setClientes(data);
+      const response = await filtrar(url);
+      setClientes(response.data.results);
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    obtenerClientes();
+  }, []);
 
   return {
     clientes,

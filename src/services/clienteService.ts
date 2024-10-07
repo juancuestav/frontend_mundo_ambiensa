@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import api from './api';
 
 export const getClientes = () => {
@@ -14,4 +15,8 @@ export const updateCliente = (id: number, cliente: any) => {
 
 export const deleteCliente = (id: number) => {
   return api.delete(`/clientes/${id}`);
+};
+
+export const filtrar = (params: string) => {
+  return api.get('/clientes?' + params);
 };

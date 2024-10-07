@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Dependencias
 import useClients from "../../hooks/useClientes";
 import { Button } from "@mui/material";
@@ -104,16 +105,16 @@ const TablaClientes = () => {
   const handleSubmit = () => {
     // Genera los parámetros para la URL solo con los campos que tienen algún valor
     const params = Object.entries(cliente)
-      .filter(([key, value]) => value !== "" && value !== null)
+      .filter(([, value]) => value !== "" && value !== null)
       .map(([key, value]) => `${key}[like]=${encodeURIComponent(value)}`) // Genera la estructura clave[like]=valor
       .join("&"); // Une los parámetros con '&'
 
     filtrarClientes(params);
   };
+  
 
   // Función para abrir el diálogo
   const handleOpenDialog = (cliente: any = null) => {
-    console.log(cliente);
     setClienteSeleccionado(cliente); // Si es null, es para agregar. Si tiene valor, es para editar.
     setOpenDialog(true);
   };
