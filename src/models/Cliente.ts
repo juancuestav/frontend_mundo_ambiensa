@@ -1,22 +1,24 @@
 class Cliente {
-  identificacion: string | null;
-  nombres: string | null;
-  apellidos: string | null;
-  email: string | null;
-  telefono: string | null;
-  direccion: string | null;
-  fecha_nacimiento: Date | null;
-//   activo: boolean;
+  id: number | null;
+  identificacion: string;
+  nombres: string;
+  apellidos: string;
+  email: string;
+  telefono: string;
+  direccion: string;
+  fecha_nacimiento: string;
+  activo: boolean;
 
   constructor() {
-    this.identificacion = null;
-    this.nombres = null;
-    this.apellidos = null;
-    this.email = null;
-    this.telefono = null;
-    this.direccion = null;
-    this.fecha_nacimiento = null;
-    // this.activo = true;
+    this.id = null;
+    this.identificacion = "";
+    this.nombres = "";
+    this.apellidos = "";
+    this.email = "";
+    this.telefono = "";
+    this.direccion = "";
+    this.fecha_nacimiento = "";
+    this.activo = true;
   }
 }
 
